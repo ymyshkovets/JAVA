@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="DeliveryCostCalculationTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2025-02-23T07:30:22" hostname="DESKTOP-3IE4M5T" time="0.294">
+  <properties/>
+  <testcase name="testCheapest()" classname="DeliveryCostCalculationTest" time="0.044"/>
+  <testcase name="testWorkLoadHigh()" classname="DeliveryCostCalculationTest" time="0.002"/>
+  <testcase name="testFrigileAndDistanceElevenKm()" classname="DeliveryCostCalculationTest" time="0.002"/>
+  <testcase name="testWorkLoadVeryHigh()" classname="DeliveryCostCalculationTest" time="0.003"/>
+  <testcase name="testSmoke()" classname="DeliveryCostCalculationTest" time="0.001"/>
+  <testcase name="testNineKmBig()" classname="DeliveryCostCalculationTest" time="0.001"/>
+  <testcase name="testFrafaleAndLongDistance()" classname="DeliveryCostCalculationTest" time="0.004"/>
+  <testcase name="testMore30km()" classname="DeliveryCostCalculationTest" time="0.001"/>
+  <testcase name="testWorkLoadIncreased()" classname="DeliveryCostCalculationTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
