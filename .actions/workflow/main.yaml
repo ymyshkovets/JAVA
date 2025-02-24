@@ -1,0 +1,10 @@
+name: run test
+
+on: 
+  push:
+   branches: 
+     - main
+
+stage: test
+  scripts: 
+  - gradle test
