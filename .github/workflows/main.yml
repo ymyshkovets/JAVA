@@ -20,3 +20,5 @@ jobs:
     - run: pwd
     - run: ls
     - run: cat build.gradle.kts
+    - run: cd..
+    - run: pwd
