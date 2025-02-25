@@ -17,3 +17,4 @@ jobs:
     - run: gradle updateDaemonJvm
     - run: gradle wrapper
     - run: gradle tasks --all
+    - run: ./gradlew test
