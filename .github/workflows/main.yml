@@ -1,0 +1,24 @@
+name: build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - run: gradle init
+    - run: gradle updateDaemonJvm
+    - run: gradle wrapper
+    - run: gradle tasks --all
+    - run: pwd
+    - run: ls
+    - run: cat build.gradle.kts
+    - run: cd..
+    - run: pwd

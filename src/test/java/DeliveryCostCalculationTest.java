@@ -73,3 +73,5 @@ public class DeliveryCostCalculationTest {
         assertEquals("Fragile cargo cannot be delivered for the distance more than 30", exception.getMessage());
     }
 }
+
+// test
