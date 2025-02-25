@@ -16,4 +16,4 @@ jobs:
     - run: gradle init
     - run: gradle updateDaemonJvm
     - run: gradle wrapper
-    - run: gradle tasks
+    - run: gradle tasks --all
