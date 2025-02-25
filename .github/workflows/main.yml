@@ -13,4 +13,5 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - run: gradle init
     - run: gradle test
