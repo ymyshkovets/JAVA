@@ -28,6 +28,8 @@ dependencies {
     runtimeOnly 'org.aspectj:aspectjweaver:1.9.7'
     testImplementation 'io.rest-assured:rest-assured:5.3.2'
     implementation 'org.seleniumhq.selenium:selenium-java:4.29.0'
+    testImplementation("org.assertj:assertj-core:3.27.2")
+
 
 
 
