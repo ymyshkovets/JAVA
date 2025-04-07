@@ -32,14 +32,14 @@ class SixHomeWork {
     void inputField() {
         driver.findElement(By.linkText("Web form")).click();
         driver.findElement(By.name("my-text")).sendKeys("test");
-        String currentText = driver.findElement(By.name("my-text")).getAttribute("value");
+        String currentText = driver.findElement(By.name("my-text")).getDomAttribute("value");
         assertEquals("test", currentText);
     }
 
     @Test
     void readOnlyField() {
         driver.findElement(By.linkText("Web form")).click();
-        String currentText = driver.findElement(By.name("my-readonly")).getAttribute("value");
+        String currentText = driver.findElement(By.name("my-readonly")).getDomAttribute("value");
         driver.findElement(By.name("my-readonly")).sendKeys("test");
         assertEquals("Readonly input", currentText);
     }
@@ -47,7 +47,7 @@ class SixHomeWork {
     @Test
     void disabledField() {
         driver.findElement(By.linkText("Web form")).click();
-        driver.findElement(By.name("my-disabled")).getAttribute("disabled");
+        driver.findElement(By.name("my-disabled")).getDomAttribute("disabled");
 
     }
 
@@ -90,7 +90,7 @@ class SixHomeWork {
     void dataPickerTest() {
         driver.findElement(By.linkText("Web form")).click();
         driver.findElement(By.name("my-date")).sendKeys("03/12/2025");
-        String currentText = driver.findElement(By.name("my-date")).getAttribute("value");
+        String currentText = driver.findElement(By.name("my-date")).getDomAttribute("value");
         assertEquals("03/12/2025", currentText);
 
     }

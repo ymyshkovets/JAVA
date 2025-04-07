@@ -2,6 +2,7 @@
 import java.time.Duration;
 import java.util.Set;
 
+import org.aeonbits.owner.ConfigFactory;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,15 +22,17 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import configs.TestPropertiesConfig;
+
 class SevenHomeWork {
 
     WebDriver driver;
-    private static final String BASE_URL = "https://bonigarcia.dev/selenium-webdriver-java/";
+    TestPropertiesConfig config = ConfigFactory.create(TestPropertiesConfig.class, System.getProperties());
 
     @BeforeEach
     void setup() {
         driver = new ChromeDriver();
-        driver.get(BASE_URL);
+        driver.get(config.getBaseUrl());
         driver.manage().window().maximize();
     }
 
@@ -48,7 +51,7 @@ class SevenHomeWork {
                 .ignoring(NoSuchElementException.class);
 
         WebElement landscape = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("landscape")));
-        assertThat(landscape.getAttribute("src")).containsIgnoringCase("landscape");
+        assertThat(landscape.getDomAttribute("src")).containsIgnoringCase("landscape");
     }
 
     @Test
@@ -112,11 +115,13 @@ class SevenHomeWork {
     @Test
     void testWebStorage() {
         driver.findElement(By.linkText("Web storage")).click();
+        @SuppressWarnings("deprecation")
         WebStorage webStorage = (WebStorage) driver;
 
         var localStorage = webStorage.getLocalStorage();
         System.out.printf("Local storage elements: {%s}\n", localStorage.size());
 
+        @SuppressWarnings("deprecation")
         SessionStorage sessionStorage = webStorage.getSessionStorage();
         sessionStorage.keySet()
                 .forEach(key -> System.out.printf("Session storage: {%s}={%s}\n", key, sessionStorage.getItem(key)));
