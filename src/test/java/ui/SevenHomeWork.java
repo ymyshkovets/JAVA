@@ -1,11 +1,9 @@
+package ui;
 
 import java.time.Duration;
 import java.util.Set;
 
-import org.aeonbits.owner.ConfigFactory;
 import static org.assertj.core.api.Assertions.assertThat;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -14,7 +12,6 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.html5.SessionStorage;
 import org.openqa.selenium.html5.WebStorage;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -22,25 +19,7 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import configs.TestPropertiesConfig;
-
-class SevenHomeWork {
-
-    WebDriver driver;
-    TestPropertiesConfig config = ConfigFactory.create(TestPropertiesConfig.class, System.getProperties());
-
-    @BeforeEach
-    void setup() {
-        driver = new ChromeDriver();
-        driver.get(config.getBaseUrl());
-        driver.manage().window().maximize();
-    }
-
-    @AfterEach
-    void tearDown() {
-        driver.getPageSource();
-        driver.quit();
-    }
+class SevenHomeWork extends BaseTest {
 
     @Test
     void loadingImages() {

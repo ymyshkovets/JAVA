@@ -1,32 +1,13 @@
+package ui;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
-class SixHomeWork {
-
-    WebDriver driver;
-    private static final String BASE_URL = "https://bonigarcia.dev/selenium-webdriver-java/";
-
-    @BeforeEach
-    void setup() {
-        driver = new ChromeDriver();
-        driver.get(BASE_URL);
-        driver.manage().window().maximize();
-    }
-
-    @AfterEach
-    void tearDown() {
-        driver.getPageSource();
-        driver.quit();
-    }
+class WebFormPage extends BaseTest {
 
     @Test
     void inputField() {
