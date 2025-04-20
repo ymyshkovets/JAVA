@@ -7,34 +7,40 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-class WebFormPage extends BaseTest {
+import pageObject.BasePage;
+
+class WebFormPageTests extends BaseTest {
 
     @Test
     void inputField() {
-        driver.findElement(By.linkText("Web form")).click();
-        driver.findElement(By.name("my-text")).sendKeys("test");
-        String currentText = driver.findElement(By.name("my-text")).getAttribute("value");
+        BasePage basePage = new BasePage(driver);
+        basePage.openPageByLinkText("Web form");
+        basePage.findElementBynameandSendValue("my-text", "test");
+        String currentText = basePage.findElementBynameandGetAttibute("my-text", "value");
         assertEquals("test", currentText);
     }
 
     @Test
     void readOnlyField() {
-        driver.findElement(By.linkText("Web form")).click();
-        String currentText = driver.findElement(By.name("my-readonly")).getAttribute("value");
-        driver.findElement(By.name("my-readonly")).sendKeys("test");
+        BasePage basePage = new BasePage(driver);
+        basePage.openPageByLinkText("Web form");
+        String currentText = basePage.findElementBynameandGetAttibute("my-readonly", "value");
+        basePage.findElementBynameandSendValue("my-readonly", "test");
         assertEquals("Readonly input", currentText);
     }
 
     @Test
     void disabledField() {
-        driver.findElement(By.linkText("Web form")).click();
-        driver.findElement(By.name("my-disabled")).getAttribute("disabled");
+        BasePage basePage = new BasePage(driver);
+        basePage.openPageByLinkText("Web form");
+        basePage.findElementBynameandGetAttibute("my-disabled", "disabled");
 
     }
 
     @Test
     void listSelectedTest() {
-        driver.findElement(By.linkText("Web form")).click();
+        BasePage basePage = new BasePage(driver);
+        basePage.openPageByLinkText("Web form");
         WebElement dropdownSelectMenu = driver.findElement(By.name("my-select"));
         Select select = new Select(dropdownSelectMenu);
         Assertions.assertTrue(select.getFirstSelectedOption().isSelected());
@@ -43,7 +49,8 @@ class WebFormPage extends BaseTest {
 
     @Test
     void listSelectedAnotherOptionTest() {
-        driver.findElement(By.linkText("Web form")).click();
+        BasePage basePage = new BasePage(driver);
+        basePage.openPageByLinkText("Web form");
         WebElement dropdownSelectMenu = driver.findElement(By.name("my-select"));
         Select select = new Select(dropdownSelectMenu);
         select.selectByIndex(2);
@@ -52,7 +59,8 @@ class WebFormPage extends BaseTest {
 
     @Test
     void checkboxTest() {
-        driver.findElement(By.linkText("Web form")).click();
+        BasePage basePage = new BasePage(driver);
+        basePage.openPageByLinkText("Web form");
         Assertions.assertTrue(driver.findElement(By.name("my-check")).isSelected());
         driver.findElement(By.name("my-check")).click();
         Assertions.assertFalse(driver.findElement(By.name("my-check")).isSelected());
@@ -61,7 +69,8 @@ class WebFormPage extends BaseTest {
     @Test
     void fileUploadTest() {
         String filePath = "C:/Users/Yuliya Myshkovets/JAVA/src/main/resources/text.txt";
-        driver.findElement(By.linkText("Web form")).click();
+        BasePage basePage = new BasePage(driver);
+        basePage.openPageByLinkText("Web form");
         driver.findElement(By.name("my-file")).sendKeys(filePath);
         WebElement submit = driver.findElement(By.xpath("//button[text()='Submit']"));
         submit.click();
@@ -69,9 +78,10 @@ class WebFormPage extends BaseTest {
 
     @Test
     void dataPickerTest() {
-        driver.findElement(By.linkText("Web form")).click();
-        driver.findElement(By.name("my-date")).sendKeys("03/12/2025");
-        String currentText = driver.findElement(By.name("my-date")).getAttribute("value");
+        BasePage basePage = new BasePage(driver);
+        basePage.openPageByLinkText("Web form");
+        basePage.findElementBynameandSendValue("my-date", "03/12/2025");
+        String currentText = basePage.findElementBynameandGetAttibute("my-date", "value");
         assertEquals("03/12/2025", currentText);
 
     }

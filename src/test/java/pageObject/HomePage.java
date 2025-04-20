@@ -4,6 +4,7 @@
  */
 package pageObject;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class HomePage {
@@ -16,14 +17,9 @@ public class HomePage {
 
     }
 
-    public String getTitle() {
-        return driver.getTitle();
-
-    }
-
-    public String getCurrentUrl() {
-        return driver.getCurrentUrl();
-
+    public WebFormPage openPageByLinkText(String text) {
+        driver.findElement(By.linkText(text)).click();
+        return new WebFormPage(driver);
     }
 
 }

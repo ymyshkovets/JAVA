@@ -2,32 +2,37 @@ package ui;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 
+import pageObject.BasePage;
 import pageObject.HomePage;
 
 class HomePageTests extends BaseTest {
 
     @Test
     void checkTitle() {
-        HomePage homePage = new HomePage(driver);
+        BasePage basePage = new BasePage(driver);
 
-        String actualTitle = homePage.getTitle();
+        String actualTitle = basePage.getTitle();
 
         assertEquals("Hands-On Selenium WebDriver with Java", actualTitle);
     }
 
     @Test
     void checkURL() {
-        HomePage homePage = new HomePage(driver);
+        BasePage basePage = new BasePage(driver);
 
-        String currentUrl = homePage.getCurrentUrl();
+        String currentUrl = basePage.getCurrentUrl();
         assertEquals("https://bonigarcia.dev/selenium-webdriver-java/", currentUrl);
     }
 
     @Test
     void checkChapter3Link() {
-        driver.findElement(By.linkText("Web form")).click();
+        HomePage homePage = new HomePage(driver);
+        homePage.openPageByLinkText("Web form");
+        BasePage basePage = new BasePage(driver);
+        String currentUrl = basePage.getCurrentUrl();
+        assertEquals("https://bonigarcia.dev/selenium-webdriver-java/web-form.html", currentUrl);
+
     }
 
 }
