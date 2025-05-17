@@ -1,3 +1,4 @@
+package ui;
 
 import java.time.Duration;
 import java.util.Set;
@@ -6,6 +7,7 @@ import org.aeonbits.owner.ConfigFactory;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -23,10 +25,16 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import configs.TestPropertiesConfig;
+import io.qameta.allure.Feature;
+import steps.AllureSteps;
+import io.qameta.allure.Step;
+
+@Feature("JS execute")
 
 class SevenHomeWork {
 
     WebDriver driver;
+    AllureSteps allureSteps = new AllureSteps();
     TestPropertiesConfig config = ConfigFactory.create(TestPropertiesConfig.class, System.getProperties());
 
     @BeforeEach
@@ -43,6 +51,7 @@ class SevenHomeWork {
     }
 
     @Test
+    @DisplayName("Загрузка картинок")
     void loadingImages() {
         driver.findElement(By.linkText("Loading images")).click();
         Wait<WebDriver> wait = new FluentWait<>(driver)
@@ -52,9 +61,11 @@ class SevenHomeWork {
 
         WebElement landscape = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("landscape")));
         assertThat(landscape.getAttribute("src")).containsIgnoringCase("landscape");
+        allureSteps.captureScreenshot(driver);
     }
 
     @Test
+    @DisplayName("Тест калькулятора")
     void slowCalculator() {
         driver.findElement(By.linkText("Slow calculator")).click();
 
@@ -70,15 +81,19 @@ class SevenHomeWork {
     }
 
     @Test
+    @DisplayName("shadowDom")
     void shadowDom() {
         driver.findElement(By.linkText("Shadow DOM")).click();
         WebElement content = driver.findElement(By.id("content"));
         SearchContext shadowRoot = content.getShadowRoot();
         WebElement textElement = shadowRoot.findElement(By.cssSelector("p"));
         assertThat(textElement.getText()).contains("Hello Shadow DOM");
+        allureSteps.captureScreenshot(driver);
+
     }
 
     @Test
+    @DisplayName("Cookies test")
     void cookieTest() {
         driver.findElement(By.linkText("Cookies")).click();
         WebDriver.Options options = driver.manage();
@@ -88,10 +103,12 @@ class SevenHomeWork {
         assertThat(username.getValue()).isEqualTo("John Doe");
         Cookie date = options.getCookieNamed("date");
         assertThat(date.getValue()).isEqualTo("10/07/2018");
+        allureSteps.captureScreenshot(driver);
 
     }
 
     @Test
+    @DisplayName("Iframe test")
     void iframeTest() {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.findElement(By.linkText("IFrames")).click();
@@ -100,19 +117,24 @@ class SevenHomeWork {
         assertThat(driver.findElement(By.className("lead")).getText()).contains("Lorem ipsum dolor sit amet");
         driver.switchTo().defaultContent();
         assertThat(driver.findElement(By.className("display-6")).getText()).contains("IFrame");
+        allureSteps.captureScreenshot(driver);
 
     }
 
     @Test
+    @DisplayName("Alert test")
     void alertTest() {
         driver.findElement(By.linkText("Dialog boxes")).click();
         driver.findElement(By.id("my-alert")).click();
         Alert alert = driver.switchTo().alert();
         assertThat(alert.getText()).isEqualTo("Hello world!");
         alert.accept();
+        allureSteps.captureScreenshot(driver);
+
     }
 
     @Test
+    @DisplayName("Web storage test")
     void testWebStorage() {
         driver.findElement(By.linkText("Web storage")).click();
         WebStorage webStorage = (WebStorage) driver;
@@ -129,6 +151,8 @@ class SevenHomeWork {
         assertThat(sessionStorage.size()).isEqualTo(3);
 
         driver.findElement(By.id("display-session")).click();
+        allureSteps.captureScreenshot(driver);
+
     }
 
 }
