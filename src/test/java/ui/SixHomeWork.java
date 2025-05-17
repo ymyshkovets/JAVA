@@ -1,5 +1,7 @@
+package ui;
 
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Map;
 
 import org.junit.jupiter.api.AfterEach;
@@ -35,7 +37,6 @@ class SixHomeWork {
 
     private WebDriver initDriver() {
         String remoteUrl = System.getenv("SELENIUM_REMOTE_URL");
-        System.out.println("Selenium_remote_url = " + remoteUrl);
         if (remoteUrl != null) {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--headless");  // Add headless mode
