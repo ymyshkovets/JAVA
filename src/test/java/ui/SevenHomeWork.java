@@ -27,7 +27,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import configs.TestPropertiesConfig;
 import io.qameta.allure.Feature;
 import steps.AllureSteps;
-import io.qameta.allure.Step;
 
 @Feature("JS execute")
 
