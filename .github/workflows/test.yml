@@ -10,8 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
-      pages: write
+      contents: read
 
     steps:
     - uses: actions/checkout@v4
@@ -29,14 +28,7 @@ jobs:
         sudo apt-get update && sudo apt-get install -y allure
 
     - name: Build with Gradle Wrapper
-      run: ./gradlew clean test
-
-    - name: Copy History
-      uses: actions/checkout@v2
-      if: always()
-      with:
-        ref: reports
-        path: reports
+      run: ./gradlew build
 
     - name: Check contents of build directory
       if: always()
