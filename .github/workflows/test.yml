@@ -38,13 +38,14 @@ jobs:
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: allure-report
-        path: build/allure-results
-        
-    - name: Deploy Allure report to GitHub Pages
-      if: always() # Execute even if previous steps fail
-      uses: peaceiris/actions-reports@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }} # Provide the GitHub token for authentication
-        publish_branch: reports # Specify the branch to publish the report to
-        publish_dir: build/allure-results # Specify the directory containing the report
+        allure_results: build/allure-results
+        allure_history: allure-history
+        keep_reports: 20
+
+    - name: Publish Report
+      if: always()
+      uses: peaceiris/actions-report@v2
+      env:
+        PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PUBLISH_BRANCH: report
+        PUBLISH_DIR: allure-history
