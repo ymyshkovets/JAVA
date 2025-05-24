@@ -1,1 +1,0 @@
-{"total":2,"items":[{"uid":"f00e1db2680f795a66189d3bea78aedb","name":"SeleniumTests","statistic":{"failed":0,"broken":1,"skipped":0,"passed":2,"unknown":0,"total":3}},{"uid":"6901c8a40bf99f53f9a771628e1f7e72","name":"DeliveryCostCalculationTest","statistic":{"failed":0,"broken":0,"skipped":0,"passed":9,"unknown":0,"total":9}}]}
