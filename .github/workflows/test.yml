@@ -1,0 +1,50 @@
+name: Run smoke tests
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 23
+      uses: actions/setup-java@v4
+      with:
+        java-version: '23'
+        distribution: 'temurin'
+
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
+
+    - name: Install Allure Commandline
+      run: |
+        sudo apt-get update && sudo apt-get install -y allure
+
+    - name: Build with Gradle Wrapper
+      run: ./gradlew build
+
+    - name: Check contents of build directory
+      if: always()
+      run: ls -R build
+      
+    - name: Upload Allure Report as Artifact
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: allure-report
+        path: build/allure-results
+        
+    - name: Deploy Allure report to GitHub Pages
+      if: always() # Execute even if previous steps fail
+      uses: peaceiris/actions-reports@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }} # Provide the GitHub token for authentication
+        publish_branch: reports # Specify the branch to publish the report to
+        publish_dir: build/allure-results # Specify the directory containing the report
