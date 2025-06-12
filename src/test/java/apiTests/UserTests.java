@@ -44,9 +44,9 @@ class UserTests {
                 statusCode(200).
                 log().all().
                 body("code", Matchers.equalTo(200),
-                        "type", Matchers.equalTo("unknown"),
-                        //"message", Matchers.greaterThan("9223372036854768470")
-);
+                        "type", Matchers.equalTo("unknown")
+                //"message", Matchers.greaterThan("9223372036854768470")
+                );
     }
 
     @Test
