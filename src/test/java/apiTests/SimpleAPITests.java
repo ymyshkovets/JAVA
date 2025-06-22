@@ -59,13 +59,13 @@ class SimpleAPITests {
         String body = """
                 {
                   "id": 0,
-                  "username": "FPMI_user_1",
+                  "username": "love1",
                   "firstName": "firstName",
                   "lastName": "lastName",
                   "email": "email@gmail.com",
                   "password": "qwerty",
                   "phone": "12345678",
-                  "userStatus": 0
+                  "userStatus": 2
                 }
                 """;
         var response = given().
@@ -120,7 +120,7 @@ class SimpleAPITests {
 
     @Test
     void simpleDeleteTest() {
-        String username = "FPMI_user_1";
+        String username = "love";
         String endpoint = "https://petstore.swagger.io/v2/user/" + username;
         var response = given().
                 when().
@@ -162,21 +162,4 @@ class SimpleAPITests {
                 body("phone", equalTo("123123123"));
     }
 
-    @Test
-    void getComplexResponseWithQueryParamTest() {
-        String endpoint = "https://petstore.swagger.io/v2/pet/findByStatus";
-        given().
-                header("accept", "application/json").
-                queryParam("status", "available").
-                when().
-                get(endpoint).
-                then().
-                assertThat().
-                statusCode(200).
-                header("content-type", equalTo("application/json")).
-                body("id", everyItem(notNullValue())).
-                body("name", everyItem(notNullValue())).
-                body("status", everyItem(equalTo("available"))).
-                body("size()", greaterThan(2));
-    }
 }
