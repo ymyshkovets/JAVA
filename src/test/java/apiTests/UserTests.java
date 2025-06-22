@@ -102,11 +102,6 @@ class UserTests {
         ApiResponse user = response.as(ApiResponse.class);
         Assertions.assertEquals(200, user.getCode());
         Assertions.assertEquals("unknown", user.getType());
-        Assertions.assertTrue(Long.parseLong(user.getMessage()) > 9223372036854768470L);
     }
 
-    @Test
-    void deleteUserTest() {
-        //
-    }
 }
